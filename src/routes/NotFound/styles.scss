@@ -1,0 +1,13 @@
+/* For mobile phones: */
+.not-found {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+
+  .not-found-img {
+    width: 200px;
+  }
+}
