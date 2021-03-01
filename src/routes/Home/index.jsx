@@ -1,11 +1,10 @@
 import React from 'react';
-import {
-  Link, useRouteMatch,
-} from 'react-router-dom';
-import {
-  gql,
-  useQuery,
-} from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
+import { Link, useRouteMatch } from 'react-router-dom';
+
+import ListItem from '../../components/ListItem';
+import Loading from '../../components/Loading';
+
 import './styles.scss';
 
 const GET_POKEMONS = gql`
@@ -20,46 +19,40 @@ const GET_POKEMONS = gql`
         url
         name
         image
+        id
       }
     }
   }
 `;
 
-const gqlVariables = {
-  limit: 10,
-  offset: 0,
-};
-
 const Home = () => {
-  const {
-    loading, error,
-    data,
-  } = useQuery(GET_POKEMONS, {
+  const gqlVariables = {
+    limit: 20,
+    offset: 0,
+  };
+  const { loading, error, data } = useQuery(GET_POKEMONS, {
     variables: gqlVariables,
+    notifyOnNetworkStatusChange: true,
   });
-
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
-
   const match = useRouteMatch();
+
+  if (loading) return <Loading />;
+  if (error) return `Error! ${error.message}`;
 
   return (
     <div className="result">
       <ul>
-        {data && data.pokemons.results.map(({ image, name }) => (
-
-          <Link to={`${match.url}${name}`}>
-            <li key={name}>
-              <img src={image} alt={name} />
-              <p>
-                {name}
-              </p>
-            </li>
-          </Link>
-        ))}
+        {data.pokemons && typeof data.pokemons.results
+          !== 'undefined' && data.pokemons.results.map((element) => {
+          const { image, name, id } = element;
+          return (
+            <Link to={`${match.url}detail/${name}`} key={id}>
+              <ListItem id={id} name={name} image={image} key={id} />
+            </Link>
+          );
+        })}
       </ul>
     </div>
-
   );
 };
 
