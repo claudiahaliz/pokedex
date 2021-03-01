@@ -6,6 +6,9 @@
   align-content: center;
   flex-wrap: wrap;
   text-align: center;
+  margin-bottom: 63px;
+  margin-top: 20px;
+  height: calc(100vh - 64px - 69px - 40px);
 
   .not-found-img {
     width: 200px;
