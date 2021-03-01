@@ -18,6 +18,21 @@
 		"react"
 	],
 	"rules": {
-		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"jsx-a11y/label-has-associated-control": [ "error", {
+			"required": {
+				"some": [ "nesting", "id"  ]
+			}
+		}],
+		"jsx-a11y/label-has-for": [ "error", {
+			"required": {
+				"some": [ "nesting", "id"  ]
+			}
+		}],
+    "no-unused-vars": "off",
+		"no-console": "off",
+		"no-plusplus": "off",
+		"no-underscore-dangle": "off",
+		"react/require-default-props": "off"
 	}
 }
