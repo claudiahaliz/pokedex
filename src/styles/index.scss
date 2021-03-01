@@ -19,6 +19,10 @@ html, body  {
   font-family: 'Flexo Light', sans-serif !important;
 }
 
+button {
+  font-family: 'Flexo Light', sans-serif !important;
+}
+
 #root {
   min-width: 320px;
   background: $background-main-dark;
@@ -90,6 +94,12 @@ html, body  {
 
         span {
           color: $dark-grey;
+        }
+      }
+
+      a.active-menu {
+        span {
+          color: $sea-blue;
         }
       }
     }

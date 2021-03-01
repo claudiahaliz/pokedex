@@ -1,0 +1,20 @@
+.loading {
+  margin: auto;
+  display: flex;
+  height: 100vh;
+  width: 80%;
+  margin-top: -70px;
+
+  &__img {
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s ease;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+    margin: auto;
+    width: 42px;
+  }
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
