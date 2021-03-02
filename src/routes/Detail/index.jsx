@@ -124,8 +124,8 @@ const Detail = () => {
     setLoadingAction(true);
     setTimeout(() => {
       setLoadingAction(false);
-      handleCatch(); // todo
-    }, 2000); // todo
+      handleCatch();
+    }, 2000);
   };
 
   // catch success; add to my pokemon

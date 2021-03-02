@@ -10,8 +10,7 @@ import './styles.scss';
 const Home = () => {
   const [buttonRef, setButtonRef] = useState(null);
   const observerRef = useRef(null);
-  const [offset, setOffset] = useState(0);
-  const gqlVariables = { limit: 24, offset };
+  const gqlVariables = { limit: 24, offset: 0 };
   const {
     loading, error, data, fetchMore,
   } = useQuery(GET_POKEMONS, {
@@ -45,7 +44,7 @@ const Home = () => {
   const handleClick = () => {
     fetchMore({
       variables: {
-        offset,
+        offset: data.pokemons.results.length,
       },
       updateQuery: (prevResult, { fetchMoreResult }) => {
         fetchMoreResult.pokemons.results = [
@@ -55,7 +54,6 @@ const Home = () => {
         return fetchMoreResult;
       },
     });
-    setOffset(offset + 24);
   };
 
   return (
