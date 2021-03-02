@@ -10,7 +10,12 @@
   margin-top: 20px;
   height: calc(100vh - 64px - 69px - 40px);
 
-  .not-found-img {
+  &__text {
+    margin-bottom: 20px;
+  }
+
+  &__img {
     width: 200px;
+    margin: 0 auto;
   }
 }

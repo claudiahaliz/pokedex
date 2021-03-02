@@ -122,6 +122,17 @@ const Detail = () => {
     }
   }, []);
 
+  // redirect to /pokemon
+  useEffect(() => {
+    let timer;
+    if (isModalVisible && isSuccess) {
+      timer = setTimeout(() => setRedirect(true), 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isModalVisible, isSuccess]);
+
   const gqlVariables = { name: paramName };
   const { loading, error, data } = useQuery(query, {
     variables: gqlVariables,
@@ -131,6 +142,9 @@ const Detail = () => {
   if (error) return `Error! ${error.message}`;
 
   // destructure; must be here after data arrives
+  if (data.pokemon.name === null) {
+    return <Redirect to="/not-found" />;
+  }
   const {
     id,
     sprites: {
@@ -202,7 +216,6 @@ const Detail = () => {
     }]);
     setIsCaught(false);
     setSuccess(true);
-    setTimeout(() => setRedirect(true), 2000); // todo
   };
 
   // release pokemon
@@ -217,7 +230,7 @@ const Detail = () => {
 
     setIsAskPermission(false);
     setLoadingAction(true);
-    setTimeout(() => setRedirect(true), 2000);
+    setSuccess(true);
   };
 
   // edit nickname
@@ -251,7 +264,6 @@ const Detail = () => {
     // next steps
     setIsCaught(false);
     setSuccess(true);
-    setTimeout(() => setRedirect(true), 2000); // todo
   };
 
   const handleAskPermission = () => askPermission();
@@ -262,17 +274,17 @@ const Detail = () => {
     <div className="detail">
       {isRedirect && <Redirect to="/pokemon" />}
       <Modal isVisible={isModalVisible}>
-        {isSuccess && <p className="center">Success!</p>}
+        {isSuccess && !isLoadingAction && <p className="center">Success!</p>}
         {isLoadingAction && !isMyPokemon && (
-        <p className="center">
-          Catching...
-        </p>
+          <p className="center">
+            Catching...
+          </p>
         )}
-        {isLoadingAction && isMyPokemon && (
-        <p>
+        {isSuccess && isLoadingAction && (
+        <p className="center">
           Bye-bye
-          {' '}
-          {dataObj.nick}
+            {' '}
+            {dataObj.nick}
           !
         </p>
         )}
