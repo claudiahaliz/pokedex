@@ -247,11 +247,7 @@ const Detail = () => {
     const nick = inputVal;
 
     // if nick is empty, set name to inputVal
-    if (nick === '') {
-      setInputVal(paramName);
-    } else {
-      setInputVal(nick);
-    }
+    setInputVal(nick === '' ? paramName : nick);
 
     // set persisted state
     const index = owned.findIndex((el) => el.uniqueId === uniqueId);
