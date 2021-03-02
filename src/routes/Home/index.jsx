@@ -1,6 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ListItem from '../../components/ListItem';
 import Loading from '../../components/Loading';
@@ -34,7 +34,6 @@ const Home = () => {
     variables: gqlVariables,
     notifyOnNetworkStatusChange: true,
   });
-  const match = useRouteMatch();
 
   if (loading) return <Loading />;
   if (error) return `Error! ${error.message}`;
@@ -46,7 +45,7 @@ const Home = () => {
           !== 'undefined' && data.pokemons.results.map((element) => {
           const { image, name, id } = element;
           return (
-            <Link to={`${match.url}detail/${name}`} key={id}>
+            <Link to={`/detail/${name}`} key={id}>
               <ListItem id={id} name={name} image={image} key={id} />
             </Link>
           );

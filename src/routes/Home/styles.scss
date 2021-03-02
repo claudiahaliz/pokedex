@@ -12,6 +12,7 @@
     grid-gap: 18px;
     margin: 0;
     padding: 0;
+    padding-bottom: 20px; // accomodate pokeball fab
 
     li {
       background: $background-pokemon-card;
