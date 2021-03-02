@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { useParams, Redirect } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import Chip from '../../components/Chip';
 import Modal from '../../components/Modal';
@@ -11,85 +11,10 @@ import iconEdit from '../../assets/icon_edit.svg';
 
 import utils from '../../core/utils';
 import usePersistedState from '../../hooks/usePersistedState';
+import { GET_POKEMON_DETAIL, GET_POKEMON_DETAIL_OWN } from '../../graphql/queries';
 
 import './styles.scss';
 
-const getPokemonDetailOwn = gql`
-query pokemon($name: String!) {
-  pokemon(name: $name) {
-    id
-    name
-    weight
-    height
-    base_experience
-    held_items {
-      item {
-        name
-      }
-    }
-    types {
-      type {
-        name
-      }
-    }
-    abilities {
-      ability {
-        name
-      }
-      is_hidden
-    }
-    stats {
-      base_stat
-      effort
-      stat {
-        name
-      }
-    }
-    sprites {
-      front_default
-    }
-    moves {
-      move {
-        name
-      }
-    }
-  }
-}`;
-const getPokemonDetail = gql`
-query pokemon($name: String!) {
-  pokemon(name: $name) {
-    id
-    name
-    weight
-    height
-    types {
-      type {
-        name
-      }
-    }
-    abilities {
-      ability {
-        name
-      }
-      is_hidden
-    }
-    stats {
-      base_stat
-      effort
-      stat {
-        name
-      }
-    }
-    sprites {
-      front_default
-    }
-    moves {
-      move {
-        name
-      }
-    }
-  }
-}`;
 const { toPascalCase, getUniqueId } = utils;
 
 const Detail = () => {
@@ -98,7 +23,7 @@ const Detail = () => {
 
   const [dataObj, setDataObj] = useState({});
   const [isMyPokemon, setMyPokemon] = useState(false);
-  const [query, setQuery] = useState(getPokemonDetail);
+  const [query, setQuery] = useState(GET_POKEMON_DETAIL);
 
   const [isModalVisible, setIsModalVisible] = useState(false); // show modal
   const [isAskPermission, setIsAskPermission] = useState(false); // text ask permission
@@ -113,7 +38,7 @@ const Detail = () => {
   useEffect(() => {
     if (uniqueId) {
       setMyPokemon(true);
-      setQuery(getPokemonDetailOwn);
+      setQuery(GET_POKEMON_DETAIL_OWN);
       const obj = owned.find((el) => el.uniqueId === uniqueId);
       if (Object.keys(obj).length !== 0) {
         setInputVal(JSON.parse(JSON.stringify(obj.nick)));

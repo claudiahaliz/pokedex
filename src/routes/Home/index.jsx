@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import ListItem from '../../components/ListItem';
 import Loading from '../../components/Loading';
-import GET_POKEMONS from '../../graphql/queries';
+import { GET_POKEMONS } from '../../graphql/queries';
 import pokeballGray from '../../assets/pokeball_gray.png';
 import './styles.scss';
 
