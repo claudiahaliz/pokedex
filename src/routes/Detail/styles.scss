@@ -1,0 +1,151 @@
+@import '../../styles/variables';
+
+.detail {
+  padding: 16px;
+  overflow: auto;
+  margin-bottom: 63px;
+  height: calc(100vh - 64px - 69px - 32px); 
+  overflow: auto;
+
+  .detail-id {
+    color: $dark-grey;
+  }
+
+  .detail-header {
+    text-align: center;
+    display: block;
+
+    .title {
+      font-size: 24px;
+      display: inline-block;
+    }
+
+    .edit {
+      display: inline-block;
+      cursor: pointer;
+
+      .icon-edit {
+        width: 20px;
+        margin-left: 8px;
+        vertical-align: baseline;
+      }
+    }
+  }
+
+  .types-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .profile-img {
+    text-align: center;
+    margin: 8px 0;
+
+    img {
+      background-color: $light-grey;
+    }
+  }
+
+  &__desc {
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 26px;
+  }
+
+  .card {
+    display: flex;
+    background-color: white;
+    padding: 8px;
+
+    &.with-border-top {
+      border-top: 1px solid $sea-blue;
+    }
+
+    &-item {
+      flex-grow: 1;
+      text-align: center;
+      color: $dark-grey;
+      
+      &__val {
+        span {
+          font-size: 10px;
+        }
+      }
+
+      &__title {
+        font-size: 11px;
+      }
+
+      &.with-left-separator {
+        border-left: 1px solid $sea-blue;
+      }
+
+      &.with-right-separator {
+        border-right: 1px solid $sea-blue;
+      }
+    }
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin: 12px 0;
+    text-align: center;
+    color: white;
+  }
+
+  .stats {
+    margin-top: 12px;
+    background-color: $sea-blue;
+    border-radius: 8px;
+    padding: 8px;
+  }
+
+  hr {
+    width: 50%;
+    margin: 0 auto;
+    color: white;
+  }
+
+  .stats-list {
+    margin: 12px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-column-gap: 10px;
+    color: white;
+
+    .stat-item {
+      padding: 12px;
+      position: relative;
+
+      &__num {
+        position: absolute;
+        right: 12px;
+        color: black;
+      }
+    }
+  }
+
+  .moves {
+    background: $background-main-dark;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 8px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    margin-top: 12px;
+
+    li {
+      padding: 12px;
+      color: white;
+      text-align: center;
+    }
+  }
+}
