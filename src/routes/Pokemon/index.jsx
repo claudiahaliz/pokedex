@@ -13,9 +13,14 @@ const Pokemon = () => {
     <div className="pokemon result">
       <h2 className="result-title">My Pokemon</h2>
       <h6>{`Showing list of ${ownedLen} item${ownedLen < 2 ? '' : 's'}`}</h6>
+      {ownedLen === 0 && (
+        <p className="center text">
+          You have not caught any pokemons yet! Gotta catch&apos;em all!
+        </p>
+      )}
       <ul>
         {Array.isArray(owned) && ownedLen !== 0
-          ? (owned.map((el) => {
+          && (owned.map((el) => {
             const {
               id, pokemonName, image, nick, uniqueId,
             } = el;
@@ -30,12 +35,7 @@ const Pokemon = () => {
                 />
               </Link>
             );
-          }))
-          : (
-            <p className="center text">
-              You have not caught any pokemons yet! Gotta catch&apos;em all!
-            </p>
-          )}
+          }))}
       </ul>
     </div>
 
