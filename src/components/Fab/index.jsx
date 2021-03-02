@@ -23,9 +23,5 @@ Fab.propTypes = {
   onHandleAction: pt.func,
   isRelease: pt.bool,
 };
-Fab.defaultProps = {
-  onHandleAction: () => {},
-  isRelease: false,
-};
 
 export default Fab;
