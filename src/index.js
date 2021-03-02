@@ -6,29 +6,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Layout from './components/Layout';
 import './index.css';
 
-const cache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        results: {
-          merge(existing, incoming) {
-            let pokemons = [];
-            if (existing && existing.pokemons) {
-              pokemons = pokemons.concat(existing.pokemons);
-            }
-            if (incoming && incoming.launches) {
-              pokemons = pokemons.concat(incoming.pokemons);
-            }
-            return {
-              ...incoming,
-              pokemons,
-            };
-          },
-        },
-      },
-    },
-  },
-});
+const cache = new InMemoryCache();
 const link = new HttpLink({
   uri: 'https://graphql-pokeapi.vercel.app/api/graphql',
 });
