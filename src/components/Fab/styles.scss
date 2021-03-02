@@ -1,0 +1,43 @@
+@import '../../styles/variables';
+
+.fab-wrapper {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 1px;
+  z-index: 100;
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: 50%;
+
+  &-content {
+    position: relative;
+    align-items: center;
+
+    p {
+      font-size: 18px;
+      display: block;
+      background: white;
+      padding: 1px 8px;
+      border-radius: 30px;
+      color: $dark-grey;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+
+      &.catch {
+        background: black;
+        color: white;
+      }
+    }
+
+    img {
+      width: 50px;
+      background-color: white;
+      border-radius: 50%;
+      padding: 5px;
+    }
+  }
+}

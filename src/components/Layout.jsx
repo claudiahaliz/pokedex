@@ -34,7 +34,6 @@ const Layout = () => (
             <span>Pokedex</span>
           </div>
         </NavLink>
-        <div />
         <NavLink to="/pokemon" activeClassName="active-menu">
           <div className="bottom-bar-item">
             <img src={pokeballGray} alt="pokemon" className="menu-img rotate" />
